@@ -44,7 +44,7 @@ class Daily extends React.Component<DProps, DState>{
                     <Card>
                         <Card.Header>
                             <Row>
-                                <Col md={10}>{this.props.createTime}</Col>
+                                <Col md={11}>{this.props.createTime}</Col>
                                 <DropdownButton id="dropdown-basic-button" size="sm" variant="secondary" title="編輯">
                                     <Dropdown.Item>編輯</Dropdown.Item>
                                     <Dropdown.Item>分享</Dropdown.Item>

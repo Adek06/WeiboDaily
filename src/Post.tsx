@@ -46,7 +46,9 @@ class Post extends React.Component<PProps, PState> {
 
     render() {
         return (
-                <Row>
+            <div className="col-md-12 col-offset-1 postBlock">
+                <div>寫個小日記</div>
+                <Row className="marginTop3 marginBottom3">
                     <Col md={12}>
                         <div contentEditable='true' className='col-md-12 form-control' id='content' onInput={this.inputDaily}></div>
                     </Col>
@@ -54,6 +56,7 @@ class Post extends React.Component<PProps, PState> {
                         <Button className="btn btn-default col-md-2 float-right" onClick={this.post}>發布</Button>
                     </Col>
                 </Row>
+            </div>
         );
     }
 }
