@@ -14,6 +14,7 @@ interface IProps {
 
 interface DailyInterface {
   content: string;
+  imgUrl: string;
   id: number;
   created_at: string;
 }
@@ -45,7 +46,7 @@ class Index extends React.Component<IProps, IState>{
 
   render() {
     let dailyList = this.state.dailyList;
-    if (dailyList[0] == undefined) {
+    if (dailyList[0] === undefined) {
 
     } else {
       console.log(dailyList[0].id)
@@ -59,7 +60,7 @@ class Index extends React.Component<IProps, IState>{
             </div>
             {dailyList.map((i, index) => (
               <div style={{ marginTop: 5 }}>
-                <Daily key={index} iid={i.id.toString()} content={i['content']} createTime={i['created_at']} getDailies={this.getDailies} />
+                <Daily key={index} iid={i.id.toString()} content={i['content']} imgUrl={i.imgUrl} createTime={i['created_at']} getDailies={this.getDailies} />
               </div>
             ))}
           </Col>

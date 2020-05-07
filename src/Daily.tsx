@@ -1,11 +1,12 @@
 import React from 'react'
 import axios from 'axios'
-import { Button, Card, Form, InputGroup, Dropdown, DropdownButton } from 'react-bootstrap'
-import { Container, Row, Col } from 'react-bootstrap';
+import { Card, Dropdown, DropdownButton, Image} from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap';
 import HOST from './Config';
 
 interface DProps {
     content: string;
+    imgUrl?: string;
     createTime: string;
     key: number;
     iid: string;
@@ -29,15 +30,16 @@ class Daily extends React.Component<DProps, DState>{
 
     delDaily() {
         let that = this;
-        let dataModel = {
-            id: this.props.iid
-        }
         axios.delete(HOST+'/dailies/'+that.props.iid).then(function(e){
             that.props.getDailies();
         })
     }
 
     render() {
+        let img = null;
+        if (this.props.imgUrl !== "") {
+            img = <Image src={this.props.imgUrl} fluid />
+        }
         return (
             <Row>
                 <Col md={12}>
@@ -52,7 +54,10 @@ class Daily extends React.Component<DProps, DState>{
                                 </DropdownButton>
                             </Row>
                         </Card.Header>
-                        <Card.Body>{this.props.content}</Card.Body>
+                        <Card.Body>
+                            <div>{this.props.content}</div>
+                            {img}
+                        </Card.Body>
                     </Card>
                 </Col>
             </Row>
