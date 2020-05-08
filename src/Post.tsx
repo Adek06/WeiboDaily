@@ -19,31 +19,47 @@ interface PState {
 class Post extends React.Component<PProps, PState> {
     constructor(props: Readonly<PProps>) {
         super(props);
+        
         this.state = {
             dailyContent: "",
             imgUrl: ""
         }
+
         this.post = this.post.bind(this);
         this.inputDaily = this.inputDaily.bind(this);
         this.getImg = this.getImg.bind(this);
+    }
+
+    componentDidMount() {
+        let dailyContent = localStorage.getItem('dailyContent');
+        let imgUrl = localStorage.getItem('imgUrl');
+        dailyContent = dailyContent==null?"":dailyContent;
+        imgUrl = imgUrl==null?"":imgUrl;
+        this.setState({
+            dailyContent: dailyContent,
+            imgUrl: imgUrl
+        })
+
+        $('#content').html(dailyContent);
     }
 
     post() {
         let that = this;
         let daily = {
             content: "",
-            imgUrl:""
+            imgUrl: ""
         }
 
         daily['content'] = this.state.dailyContent;
-        daily['imgUrl']  = this.state.imgUrl;
+        daily['imgUrl'] = this.state.imgUrl;
 
         axios.post(HOST + "/dailies", daily).then(function (res) {
             that.props.getDailies();
             $('#content').html("");
             that.setState({
-                imgUrl:""
+                imgUrl: ""
             })
+            localStorage.clear();
         })
     }
 
@@ -51,12 +67,16 @@ class Post extends React.Component<PProps, PState> {
         this.setState({
             dailyContent: e.currentTarget.innerHTML
         })
+
+        localStorage.setItem('dailyContent', this.state.dailyContent)
     }
 
     getImg(img: any) {
         this.setState({
             imgUrl: img
         })
+
+        localStorage.setItem('imgUrl', img)
     }
 
     render() {
