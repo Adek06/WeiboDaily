@@ -2,7 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import { Card, Dropdown, DropdownButton, Image} from 'react-bootstrap'
 import { Row, Col } from 'react-bootstrap';
-import HOST from './Config';
+import { HOST } from './Config';
 
 interface DProps {
     content: string;

@@ -1,3 +1,8 @@
-const HOST = "http://192.168.0.107:3003/api";
+const HOST = "http://192.168.0.105:3003/api";
 
-export default HOST;
+const OSSInfo = {
+    region:"oss-cn-beijing",
+    bucket: 'adek06game'
+}
+
+export {HOST, OSSInfo};

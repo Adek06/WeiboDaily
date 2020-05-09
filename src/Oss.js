@@ -1,6 +1,8 @@
 import * as OSS from 'ali-oss'
 import React from 'react'
 import { Form } from 'react-bootstrap'
+import axios from 'axios'
+import {HOST, OSSInfo} from './Config'
 
 // class FileList extends React.Component{
 //     constructor(props){
@@ -27,9 +29,28 @@ class Oss extends React.Component {
     constructor(props){
         super(props)
         this.state = {
-            c:1
+            c:1,
+            accessKeyId:'',
+            accessKeySecret:'',
+            stsToken:'',
         }
         this.upload = this.upload.bind(this)
+        this.getSTS = this.getSTS.bind(this)
+    }
+
+    getSTS(){
+        let self = this;
+        axios.get(HOST+'/sts/getsts').then(function(res){
+            console.log(res)
+            let data = res.data
+            self.setState({
+                accessKeyId: data.access_key_id,
+                accessKeySecret: data.access_key_secret,
+                stsToken: data.security_token,
+            })
+
+            console.log(self.state)
+        })
     }
 
     upload(e){
@@ -37,11 +58,16 @@ class Oss extends React.Component {
         let file     = e.target.files[0];
         let fileName = file.name
 
+
+
+        console.log(self.state.accessKeyId)
+
         let client = new OSS({
-            region: 'oss-cn-beijing',
-            accessKeyId:'LTAI4GGGUTkxCyEoPfWGcyuA',
-            accessKeySecret:'IGtzDrcwkgJtf6bZZe752O2eoH5QCt',
-            bucket: 'adek06game',
+            region: OSSInfo.region,
+            accessKeyId: self.state.accessKeyId,
+            accessKeySecret: self.state.accessKeySecret,
+            stsToken: self.state.stsToken,
+            bucket: OSSInfo.bucket,
         })
 
         client.put(fileName, file).then(function(result){
@@ -61,7 +87,7 @@ class Oss extends React.Component {
 
         return (
             <Form>
-                <Form.File label="上傳圖片" custom onChange={this.upload}/>
+                <Form.File label="上傳圖片" custom onChange={this.upload} onClick={this.getSTS}/>
             </Form>
         );
     }

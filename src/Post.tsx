@@ -1,7 +1,7 @@
 import React from 'react';
 import './Post.css';
 import axios from 'axios'
-import HOST from './Config'
+import { HOST } from './Config'
 import './Post.css'
 import { Button, Image } from 'react-bootstrap'
 import { Row, Col } from 'react-bootstrap';

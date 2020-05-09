@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Post from './Post';
 import Daily from './Daily';
-import HOST from './Config';
+import { HOST } from './Config';
 import axios from 'axios';
 import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
