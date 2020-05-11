@@ -23,7 +23,7 @@ class TodoItem extends React.Component<IProps, IState>{
                 <InputGroup.Radio aria-label="Radio button for following text input" />
                 </InputGroup.Prepend>
                 <FormControl aria-label="Text input with radio button" />
-            </InputGroup>>
+            </InputGroup>
         )
     }
 }
