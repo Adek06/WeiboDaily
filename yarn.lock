@@ -1409,6 +1409,11 @@
   resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-7.2.1.tgz#2ad4e844175a3738cb9e7064be5ea070b8863a1c"
   integrity sha512-oZ0Ib5I4Z2pUEcoo95cT1cr6slco9WY7yiPpG+RGNkj8YcYgJnM7pXmYmorNOReh8MIGcKSqXyeGjxnr8YiZbA==
 
+"@types/ali-oss@^6.0.5":
+  version "6.0.5"
+  resolved "https://registry.npm.taobao.org/@types/ali-oss/download/@types/ali-oss-6.0.5.tgz#50621a129bc80dbc4adb3764c769ca2fecade71a"
+  integrity sha1-UGIaEpvIDbxK2zdkx2nKL+yt5xo=
+
 "@types/babel__core@^7.1.0":
   version "7.1.6"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.1.6.tgz#16ff42a5ae203c9af1c6e190ed1f30f83207b610"
