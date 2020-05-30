@@ -1,5 +1,6 @@
 import OSS from 'ali-oss'
 import React from 'react'
+import "./Oss.css"
 
 interface OProps {
     accessKeyId: string;
@@ -80,14 +81,11 @@ class Oss extends React.Component<OProps, OState> {
             <div className="file">
                 <label className="file-label">
                     <input className="file-input" type="file" name="resume" onChange={this.upload}/>
-                <span className="file-cta">
-                  <span className="file-icon">
-                    <i className="fas fa-upload" />
-                  </span>
-                  <span className="file-label">
-                    Choose a file…
-                  </span>
-                </span>
+                    <span className="file-cta" id="uploadPic">
+                          <span className="file-label">
+                                图片
+                          </span>
+                    </span>
                 </label>
             </div>
         );

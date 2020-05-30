@@ -5,3 +5,12 @@
     border-radius:5px;
     -moz-border-radius:25px; /* Old Firefox */
 }
+
+.dailyContent{
+    font-size: small;
+}
+
+#dropdown-menu{
+    width: 100%;
+    min-width: 0;
+}

@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import './Daily.css'
 import {HOST} from './Config';
+import "@creativebulma/bulma-divider/dist/bulma-divider.min.css"
 
 interface DProps {
     content: string;
@@ -48,6 +49,7 @@ class Daily extends React.Component<DProps, DState> {
         if (this.props.imgUrl !== "") {
             img = <img alt={this.props.imgUrl} src={this.props.imgUrl}/>
         }
+        let content = this.props.content.replace("&nbsp;", " ")
         return (
             <div className="dailyBlock">
                 <div className="column is-12">
@@ -59,23 +61,30 @@ class Daily extends React.Component<DProps, DState> {
                         </div>
                         <div className="level-right">
                             <div className="level-item">
-                                <div className={"dropdown " + (this.state.isActiveDropdown? "is-active": "") }  onClick={this.activeDropdown}>
+                                <div className={"dropdown " + (this.state.isActiveDropdown ? "is-active" : "")}
+                                     onClick={this.activeDropdown}>
                                     <div className="dropdown-trigger">
                                         <button className="button" aria-haspopup="true" aria-controls="dropdown-menu">
-                                            <span>编辑</span>
+                                            <span>操作</span>
                                             <span className="icon is-small">
-                                                <i className="fas fa-angle-down" aria-hidden="true" />
+                                                <i className="fas fa-angle-down" aria-hidden="true"/>
                                             </span>
                                         </button>
                                     </div>
                                     <div className="dropdown-menu" id="dropdown-menu" role="menu">
                                         <div className="dropdown-content">
-                                            <a href="#" className="dropdown-item">
-                                                编辑
+                                            <a className="dropdown-item">
+                                                <span>编辑&nbsp;</span>
+                                                <span className="icon is-small">
+                                                        <i className="far fa-edit" />
+                                                </span>
                                             </a>
                                             <hr className="dropdown-divider"/>
                                             <a onClick={this.delDaily} className="dropdown-item">
-                                                删除
+                                                <span>删除&nbsp;</span>
+                                                <span className="icon is-small">
+                                                        <i className="far fa-trash-alt"/>
+                                                </span>
                                             </a>
                                         </div>
                                     </div>
@@ -83,7 +92,8 @@ class Daily extends React.Component<DProps, DState> {
                             </div>
                         </div>
                     </div>
-                    <div>{this.props.content}</div>
+                    <div className="divider">Daily</div>
+                    <div className={"dailyContent"}>{content}</div>
                     {img}
                 </div>
             </div>

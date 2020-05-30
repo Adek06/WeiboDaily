@@ -3,6 +3,9 @@
     border-style: solid;
     border-width: 1px;
     border-color: #888888;
+    border-radius:5px;
+    margin-bottom: 4px;
+    -moz-border-radius:25px; /* Old Firefox */
 }
 
 #content:empty:before{ 

@@ -11,7 +11,7 @@ interface IProps {
     imgUrl: string;
 }
 
-class Img extends React.Component<IProps, any>{
+class Img extends React.Component<IProps, any> {
     constructor(props: Readonly<IProps>) {
         super(props);
     }
@@ -19,8 +19,8 @@ class Img extends React.Component<IProps, any>{
     render() {
         return (
             <div className="img-wrap">
-                <button className="delete close" onClick={this.props.clearImg} />
-                <img alt={this.props.imgUrl} src={this.props.imgUrl} />
+                <button className="delete close" onClick={this.props.clearImg}/>
+                <img alt={this.props.imgUrl} src={this.props.imgUrl}/>
             </div>
 
 
@@ -122,6 +122,7 @@ class Post extends React.Component<PProps, PState> {
         self.setState({
             imgUrl: ""
         })
+        localStorage.setItem('imgUrl', "")
     }
 
     getSTS() {
@@ -154,27 +155,29 @@ class Post extends React.Component<PProps, PState> {
         }
         return (
             <div className="postBlock">
-                <div>寫個小日記</div>
-                <div className="columns">
-                    <div className="column is-12">
-                        <div contentEditable='true' className='form-control' id='content'
-                             onInput={this.inputDaily} />
+                <div className={"column is-12"}>
+                    <div className="title">寫個小日記</div>
+                    <div contentEditable='true' className='form-control' id='content'
+                         onInput={this.inputDaily}/>
+                    {img}
+                    <div className="level">
+                        <div className="level-left">
+                            <div className="level-item">
+                                <Oss accessKeyId={this.state.accessKeyId}
+                                     accessKeySecret={this.state.accessKeySecret}
+                                     stsToken={this.state.stsToken} bucket={OSSInfo.bucket}
+                                     region={OSSInfo.region}
+                                     callback={this.getImg}/>
+                            </div>
+                        </div>
+                        <div className="level-right">
+                            <div className="level-item">
+                                <button className="button is-primary" onClick={this.post}>發布</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                {img}
-                <div className="level">
-                    <div className="level-left">
-                        <Oss accessKeyId={this.state.accessKeyId} accessKeySecret={this.state.accessKeySecret}
-                             stsToken={this.state.stsToken} bucket={OSSInfo.bucket} region={OSSInfo.region}
-                             callback={this.getImg}/>
-                    </div>
-                    <div className="level-right">
-                        <button className="button" onClick={this.post}>發布</button>
-                    </div>
-                </div>
-
             </div>
-
         );
     }
 

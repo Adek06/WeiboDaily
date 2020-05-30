@@ -54,7 +54,7 @@ class Index extends React.Component<IProps, IState>{
     return (
       <div className="container">
         <div className="marginTop10 columns">
-          <div className="column is-8 is-offset-2">
+          <div className="column is-4 is-offset-4">
             <div className="marginTop3">
               <Post getDailies={this.getDailies} />
             </div>
