@@ -1,0 +1,8 @@
+微博日记本
+====
+
+仿微博界面的日记本。
+
+使用 React.js Typescript 进行开发。前端 UI 库使用的是 Bulma。
+
+这部分是 WEB 客户端。后端开发未开源。等到基础功能完善后，打算使用 Golang + gin + sqlite 作为服务端。
