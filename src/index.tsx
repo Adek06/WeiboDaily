@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Post from './Post';
 import Daily from './Daily';
-import { HOST } from './Config';
+import {HOST} from './Config';
 import axios from 'axios';
 import './index.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { Container, Row, Col } from 'react-bootstrap';
+import 'bulma/css/bulma.min.css'
+import '@fortawesome/fontawesome-free/css/all.min.css'
 
 interface IProps {
 
@@ -52,20 +52,22 @@ class Index extends React.Component<IProps, IState>{
       console.log(dailyList[0].id)
     }
     return (
-      <Container>
-        <Row className="marginTop10">
-          <Col md={{ span: 8, offset: 2 }}>
+      <div className="container">
+        <div className="marginTop10 columns">
+          <div className="column is-8 is-offset-2">
             <div className="marginTop3">
               <Post getDailies={this.getDailies} />
             </div>
-            {dailyList.map((i, index) => (
-              <div style={{ marginTop: 5 }}>
-                <Daily key={index} iid={i.id.toString()} content={i['content']} imgUrl={i.imgUrl} createTime={i['created_at']} getDailies={this.getDailies} />
-              </div>
-            ))}
-          </Col>
-        </Row>
-      </Container>
+            <div style={{ marginTop: 30 }}>
+              {dailyList.map((i, index) => (
+                <div style={{ marginTop: 10 }}>
+                  <Daily key={index} iid={i.id.toString()} content={i['content']} imgUrl={i.imgUrl} createTime={i['created_at']} getDailies={this.getDailies} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 }

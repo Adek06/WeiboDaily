@@ -1,6 +1,5 @@
 import OSS from 'ali-oss'
 import React from 'react'
-import {Form} from 'react-bootstrap'
 
 interface OProps {
     accessKeyId: string;
@@ -53,7 +52,7 @@ class Oss extends React.Component<OProps, OState> {
         }
 
         client.multipartUpload(fileName, file, {
-            progress: function (p, checkPoint) {
+            progress: function (p) {
                 console.log(p)
                 let obj = {
                     fileName: fileName,
@@ -78,9 +77,19 @@ class Oss extends React.Component<OProps, OState> {
 
     render() {
         return (
-            <Form>
-                <Form.File label={this.props.labelStr} custom onChange={this.upload}/>
-            </Form>
+            <div className="file">
+                <label className="file-label">
+                    <input className="file-input" type="file" name="resume" onChange={this.upload}/>
+                <span className="file-cta">
+                  <span className="file-icon">
+                    <i className="fas fa-upload" />
+                  </span>
+                  <span className="file-label">
+                    Choose a file…
+                  </span>
+                </span>
+                </label>
+            </div>
         );
     }
 }

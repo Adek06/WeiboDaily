@@ -3,10 +3,31 @@ import './Post.css';
 import axios from 'axios'
 import {HOST, OSSInfo} from './Config'
 import './Post.css'
-import {Button, Image} from 'react-bootstrap'
-import {Row, Col} from 'react-bootstrap';
 import $ from 'jquery'
 import Oss from './Oss'
+
+interface IProps {
+    clearImg: any;
+    imgUrl: string;
+}
+
+class Img extends React.Component<IProps, any>{
+    constructor(props: Readonly<IProps>) {
+        super(props);
+    }
+
+    render() {
+        return (
+            <div className="img-wrap">
+                <button className="delete close" onClick={this.props.clearImg} />
+                <img alt={this.props.imgUrl} src={this.props.imgUrl} />
+            </div>
+
+
+        );
+    }
+}
+
 
 interface PProps {
     getDailies?: any;
@@ -38,6 +59,7 @@ class Post extends React.Component<PProps, PState> {
         this.inputDaily = this.inputDaily.bind(this);
         this.getImg = this.getImg.bind(this);
         this.getSTS = this.getSTS.bind(this);
+        this.clearImg = this.clearImg.bind(this);
     }
 
     componentDidMount() {
@@ -69,7 +91,7 @@ class Post extends React.Component<PProps, PState> {
         daily['content'] = this.state.dailyContent;
         daily['imgUrl'] = this.state.imgUrl;
 
-        axios.post(HOST + "/dailies", daily).then(function (res) {
+        axios.post(HOST + "/dailies", daily).then(function () {
             that.props.getDailies();
             $('#content').html("");
             that.setState({
@@ -95,6 +117,13 @@ class Post extends React.Component<PProps, PState> {
         localStorage.setItem('imgUrl', obj.url)
     }
 
+    clearImg() {
+        let self = this;
+        self.setState({
+            imgUrl: ""
+        })
+    }
+
     getSTS() {
         let self = this;
         axios.get(HOST + '/sts/getsts').then(function (res) {
@@ -110,7 +139,6 @@ class Post extends React.Component<PProps, PState> {
         })
     }
 
-
     componentWillUnmount() {
         if (this.timer != null) {
             clearInterval(this.timer);
@@ -120,31 +148,37 @@ class Post extends React.Component<PProps, PState> {
     render() {
         let img = null;
         if (this.state.imgUrl !== "") {
-            img = <Image src={this.state.imgUrl} fluid/>
+
+            img = <Img clearImg={this.clearImg} imgUrl={this.state.imgUrl}/>
+
         }
         return (
-            <div className="col-md-12 col-offset-1 postBlock">
+            <div className="postBlock">
                 <div>寫個小日記</div>
-                <Row className="marginTop3 marginBottom3">
-                    <Col md={12}>
-                        <div contentEditable='true' className='col-md-12 form-control' id='content'
-                             onInput={this.inputDaily}></div>
-                    </Col>
-                    <Col md={12}>
-                        {img}
-                    </Col>
-                    <Col md={4} className="marginTop3">
+                <div className="columns">
+                    <div className="column is-12">
+                        <div contentEditable='true' className='form-control' id='content'
+                             onInput={this.inputDaily} />
+                    </div>
+                </div>
+                {img}
+                <div className="level">
+                    <div className="level-left">
                         <Oss accessKeyId={this.state.accessKeyId} accessKeySecret={this.state.accessKeySecret}
                              stsToken={this.state.stsToken} bucket={OSSInfo.bucket} region={OSSInfo.region}
                              callback={this.getImg}/>
-                    </Col>
-                    <Col md={8}>
-                        <Button className="btn btn-default col-md-2 float-right" onClick={this.post}>發布</Button>
-                    </Col>
-                </Row>
+                    </div>
+                    <div className="level-right">
+                        <button className="button" onClick={this.post}>發布</button>
+                    </div>
+                </div>
+
             </div>
+
         );
     }
+
+
 }
 
 export default Post;

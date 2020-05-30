@@ -25,3 +25,13 @@
     border-radius:5px;
     -moz-border-radius:25px; /* Old Firefox */
 }
+
+.img-wrap {
+    position: relative;
+}
+.img-wrap .close {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    z-index: 100;
+}
