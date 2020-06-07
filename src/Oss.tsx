@@ -33,6 +33,9 @@ class Oss extends React.Component<OProps, OState> {
         let client;
         let self = this;
         let file = e.target.files[0];
+        if (!file) {
+            return ;
+        }
         let fileName = file.name
 
         if (self.props.stsToken) {

@@ -35,7 +35,7 @@ class Index extends React.Component<IProps, IState>{
 
   getDailies() {
     let that = this;
-    axios.get(HOST + '/dailies/all').then(function (res) {
+    axios.get(HOST + '/dailies').then(function (res) {
       let data = res.data;
       console.log(data)
       that.setState({

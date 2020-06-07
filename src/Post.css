@@ -22,11 +22,14 @@
 }
 
 .postBlock{
-    border-style: solid;
-    border-width: 1px;
+    background-color: white;
+    /*border-style: solid;*/
+    border-width: 2px;
     border-color: #DFDFDF;
     border-radius:5px;
     -moz-border-radius:25px; /* Old Firefox */
+    box-shadow: 5px 5px 10px #888888;
+
 }
 
 .img-wrap {

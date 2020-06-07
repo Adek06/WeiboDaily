@@ -127,7 +127,7 @@ class Post extends React.Component<PProps, PState> {
 
     getSTS() {
         let self = this;
-        axios.get(HOST + '/sts/getsts').then(function (res) {
+        axios.get(HOST + '/sts').then(function (res) {
             console.log(res)
             let data = res.data
             self.setState({
