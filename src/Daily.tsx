@@ -53,7 +53,7 @@ class Daily extends React.Component<DProps, DState> {
         return (
             <div className="dailyBlock">
                 <div className="column is-12">
-                    <div className="level">
+                    <div className="level is-mobile">
                         <div className="level-left">
                             <div className="level-item">
                                 {this.props.createTime}

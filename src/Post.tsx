@@ -160,7 +160,7 @@ class Post extends React.Component<PProps, PState> {
                     <div contentEditable='true' className='form-control' id='content'
                          onInput={this.inputDaily}/>
                     {img}
-                    <div className="level">
+                    <div className="level is-mobile">
                         <div className="level-left">
                             <div className="level-item">
                                 <Oss accessKeyId={this.state.accessKeyId}

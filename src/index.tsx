@@ -29,6 +29,7 @@ class Index extends React.Component<IProps, IState>{
     this.state = {
       dailyList: []
     }
+    this.isPC = this.isPC.bind(this)
     this.getDailies = this.getDailies.bind(this)
     this.getDailies()
   }
@@ -44,6 +45,21 @@ class Index extends React.Component<IProps, IState>{
     })
   }
 
+  isPC () { //是否为PC端
+    let userAgentInfo = navigator.userAgent;
+    let Agents = ["Android", "iPhone",
+      "SymbianOS", "Windows Phone",
+      "iPad", "iPod"];
+    let flag = true;
+    for (let v = 0; v < Agents.length; v++) {
+      if (userAgentInfo.indexOf(Agents[v]) > 0) {
+        flag = false;
+        break;
+      }
+    }
+    return flag;
+  }
+
   render() {
     let dailyList = this.state.dailyList;
     if (dailyList[0] === undefined) {
@@ -51,10 +67,18 @@ class Index extends React.Component<IProps, IState>{
     } else {
       console.log(dailyList[0].id)
     }
+
+    let column_size;
+    if(this.isPC()){
+      column_size = "is-4 is-offset-4"
+    } else {
+      column_size = "is-10 is-offset-1"
+    }
+
     return (
       <div className="container">
-        <div className="marginTop10 columns">
-          <div className="column is-4 is-offset-4">
+        <div className="marginTop10 columns is-mobile">
+          <div className={"column " + column_size}>
             <div className="marginTop3">
               <Post getDailies={this.getDailies} />
             </div>
