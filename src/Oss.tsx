@@ -34,7 +34,7 @@ class Oss extends React.Component<OProps, OState> {
         let self = this;
         let file = e.target.files[0];
         if (!file) {
-            return ;
+            return;
         }
         let fileName = file.name
 

@@ -11,18 +11,18 @@ interface IState {
 
 }
 
-class TodoItem extends React.Component<IProps, IState>{
-    constructor(props: Readonly<IProps>){
+class TodoItem extends React.Component<IProps, IState> {
+    constructor(props: Readonly<IProps>) {
         super(props)
     }
 
-    render(){
+    render() {
         return (
             <InputGroup>
                 <InputGroup.Prepend>
-                <InputGroup.Radio aria-label="Radio button for following text input" />
+                    <InputGroup.Radio aria-label="Radio button for following text input"/>
                 </InputGroup.Prepend>
-                <FormControl aria-label="Text input with radio button" />
+                <FormControl aria-label="Text input with radio button"/>
             </InputGroup>
         )
     }
@@ -36,14 +36,14 @@ interface TState {
 
 }
 
-class TodoList extends React.Component<TProps, TState>{
-    constructor(props: Readonly<TProps>){
+class TodoList extends React.Component<TProps, TState> {
+    constructor(props: Readonly<TProps>) {
         super(props)
     }
 
-    render(){
+    render() {
         return (
-            <TodoItem content="" id={1} isDone={true} />
+            <TodoItem content="" id={1} isDone={true}/>
         )
     }
 }

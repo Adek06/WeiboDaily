@@ -76,7 +76,7 @@ class Daily extends React.Component<DProps, DState> {
                                             <a className="dropdown-item">
                                                 <span>编辑&nbsp;</span>
                                                 <span className="icon is-small">
-                                                        <i className="far fa-edit" />
+                                                        <i className="far fa-edit"/>
                                                 </span>
                                             </a>
                                             <hr className="dropdown-divider"/>
