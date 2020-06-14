@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import './Daily.css'
-import {HOST} from './Config';
+import {HOST, IMAGE_PRE} from './Config';
 import "@creativebulma/bulma-divider/dist/bulma-divider.min.css"
 
 interface DProps {
@@ -47,7 +47,7 @@ class Daily extends React.Component<DProps, DState> {
     render() {
         let img = null;
         if (this.props.imgUrl !== "") {
-            img = <img alt={this.props.imgUrl} src={this.props.imgUrl}/>
+            img = <img alt={this.props.imgUrl} src={IMAGE_PRE + this.props.imgUrl}/>
         }
         let content = this.props.content.replace("&nbsp;", " ")
         return (

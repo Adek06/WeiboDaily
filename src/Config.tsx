@@ -5,4 +5,6 @@ const OSSInfo = {
     bucket: 'adek06game'
 }
 
-export {HOST, OSSInfo};
+const IMAGE_PRE = "http://adek06game.oss-cn-beijing.aliyuncs.com/"
+
+export {HOST, OSSInfo, IMAGE_PRE};

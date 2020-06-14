@@ -1,7 +1,7 @@
 import React from 'react';
 import './Post.css';
 import axios from 'axios'
-import {HOST, OSSInfo} from './Config'
+import {HOST, OSSInfo, IMAGE_PRE} from './Config'
 import './Post.css'
 import $ from 'jquery'
 import Oss from './Oss'
@@ -110,11 +110,12 @@ class Post extends React.Component<PProps, PState> {
     }
 
     getImg(obj: any) {
+        let url = obj.url.replace(IMAGE_PRE, "")
         this.setState({
-            imgUrl: obj.url
+            imgUrl: url
         })
 
-        localStorage.setItem('imgUrl', obj.url)
+        localStorage.setItem('imgUrl', url)
     }
 
     clearImg() {
@@ -150,7 +151,7 @@ class Post extends React.Component<PProps, PState> {
         let img = null;
         if (this.state.imgUrl !== "") {
 
-            img = <Img clearImg={this.clearImg} imgUrl={this.state.imgUrl}/>
+            img = <Img clearImg={this.clearImg} imgUrl={IMAGE_PRE + this.state.imgUrl}/>
 
         }
         return (
